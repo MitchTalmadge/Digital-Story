@@ -1,0 +1,36 @@
+{
+  "name": "digital-story",
+  "description": "An interactive web-based story about the history of Utah's trains. Created as an assignment for WRTG 3040.",
+  "version": "1.0.0",
+  "private": true,
+  "maintainers": [
+    {
+      "name": "Mitch Talmadge",
+      "web": "https://github.com/MitchTalmadgeUofU"
+    }
+  ],
+  "scripts": {
+    "install": "tsc",
+    "start": "node ./bin/server.js"
+  },
+  "dependencies": {
+    "winston": "^3.0.0-rc4"
+  },
+  "devDependencies": {
+    "typescript": "^2.8.1",
+    "@types/node": "^9.6.2"
+  },
+  "repositories": [
+    {
+      "type": "git",
+      "url": "https://github.com/MitchTalmadgeUofU/Digital-Story"
+    }
+  ],
+  "licenses": [
+    {
+      "name": "MIT",
+      "url": "https://github.com/MitchTalmadgeUofU/Digital-Story/blob/master/LICENSE.md"
+    }
+  ],
+  "homepage": "https://github.com/MitchTalmadgeUofU/Digital-Story"
+}
