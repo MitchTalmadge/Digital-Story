@@ -4,8 +4,6 @@ const path = require('path');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-config.mode = "production";
-
 // Using AOT TypeScript compiler.
 config.module.rules.unshift(
     {
