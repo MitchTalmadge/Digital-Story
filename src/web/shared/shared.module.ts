@@ -2,6 +2,7 @@ import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {RouterModule} from "@angular/router";
+import {MTMapModule} from "./mt-map/mt-map.module";
 
 /**
  * This module is dedicated to highly re-usable components that are used often in feature components (pages, etc)
@@ -14,6 +15,7 @@ import {RouterModule} from "@angular/router";
         RouterModule,
 
         // Components
+        MTMapModule
     ],
     declarations: [],
     exports: [
@@ -23,6 +25,7 @@ import {RouterModule} from "@angular/router";
         RouterModule,
 
         // Components
+        MTMapModule
     ],
     providers: [],
 })
