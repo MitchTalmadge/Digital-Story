@@ -68,12 +68,6 @@ const config = {
         // This plugin removes all un-used locales from moment (a nearly 200kb reduction).
         new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /en/),
 
-        // Puts chunks in correct order.
-        new webpack.optimize.CommonsChunkPlugin({
-            name: ['main', 'vendor', 'polyfills'],
-            minChunks: Infinity
-        }),
-
         // Aliases for JS libraries.
         new webpack.ProvidePlugin({
             jQuery: 'jquery',
@@ -87,6 +81,25 @@ const config = {
             Popper: 'popper.js'
         })
     ],
+
+    optimization: {
+        splitChunks: {
+            cacheGroups: {
+                main: {
+                    name: "main",
+                    minChunks: Infinity
+                },
+                vendor: {
+                    name: "vendor",
+                    minChunks: Infinity
+                },
+                polyfills: {
+                    name: "polyfills",
+                    minChunks: Infinity
+                },
+            }
+        }
+    },
 
     resolve: {
         extensions: ['.ts', '.js', '.json', '.jsx'],
