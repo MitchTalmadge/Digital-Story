@@ -1,8 +1,15 @@
 <div class="mt-navigation">
-    <div class="mt-navigation-arrow mt-navigation-arrow-left" (click)="onLeftArrowClicked">
+    <div class="mt-navigation-arrow mt-navigation-arrow-left" (click)="onLeftArrowClicked()" [class.disabled]="currentPos == 0 || animating">
         <i class="fas fa-angle-left"></i>
     </div>
-    <div class="mt-navigation-arrow mt-navigation-arrow-right" (click)="onRightArrowClicked">
+    <div class="mt-navigation-rails"></div>
+    <div class="mt-navigation-road"></div>
+    <div class="mt-navigation-train">
+        <img src="train.png"/>
+    </div>
+    <div class="mt-navigation-label mt-navigation-label-previous" #previousLabel></div>
+    <div class="mt-navigation-label mt-navigation-label-current" #currentLabel></div>
+    <div class="mt-navigation-arrow mt-navigation-arrow-right" (click)="onRightArrowClicked()" [class.disabled]="currentPos == testStrings.length - 1 || animating">
         <i class="fas fa-angle-right"></i>
     </div>
 </div>

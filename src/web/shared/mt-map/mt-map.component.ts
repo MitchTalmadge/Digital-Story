@@ -1,5 +1,4 @@
 import {AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
-import LatLng = google.maps.LatLng;
 
 @Component({
     selector: 'mt-map',
@@ -16,7 +15,7 @@ export class MTMapComponent implements OnInit, AfterViewInit {
      * The starting center coordinates for this map.
      */
     @Input("startCoordinates")
-    startCoordinates: google.maps.LatLng = new LatLng(-25.363, 131.044);
+    startCoordinates: google.maps.LatLng = new google.maps.LatLng(-25.363, 131.044);
 
     /**
      * The starting zoom level for this map.

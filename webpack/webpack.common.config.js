@@ -32,12 +32,12 @@ const config = {
                 use: ["to-string-loader", "css-loader", "sass-loader"]
             },
             {
-                test: /\.css(\?v=[\d\.]+)?$/,
+                test: /\.css(\?v=[\d.]+)?$/,
                 use: ["style-loader", "css-loader"],
                 exclude: [/\.(component|directive)\.css$/]
             },
             {
-                test: /\.scss(\?v=[\d\.]+)?$/,
+                test: /\.scss(\?v=[\d.]+)?$/,
                 use: ["style-loader", "css-loader", "sass-loader"],
                 exclude: [/\.(component|directive)\.scss$/]
             },
