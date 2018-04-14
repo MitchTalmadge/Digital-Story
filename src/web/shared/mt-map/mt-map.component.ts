@@ -32,7 +32,7 @@ export class MTMapComponent implements OnInit, AfterViewInit {
     /**
      * The Google Maps map instance.
      */
-    map: google.maps.Map;
+    private map: google.maps.Map;
 
     constructor() {
     }
@@ -51,7 +51,23 @@ export class MTMapComponent implements OnInit, AfterViewInit {
     private initGoogleMaps(): void {
         this.map = new google.maps.Map(this.mapDiv.nativeElement, {
             center: this.startCoordinates,
+            draggable: false,
+            fullscreenControl: false,
+            mapTypeControl: false,
+            scrollwheel: false,
+            streetViewControl: false,
+            zoomControl: false,
             zoom: this.startZoom
         });
+    }
+
+    /**
+     * Pans the map to the given location and zoom level.
+     * @param {google.maps.LatLng} location The coordinates to pan to.
+     * @param {number} zoom The zoom level to pan to.
+     */
+    panTo(location: google.maps.LatLng, zoom: number) {
+        this.map.panTo(location);
+        this.map.setZoom(zoom);
     }
 }

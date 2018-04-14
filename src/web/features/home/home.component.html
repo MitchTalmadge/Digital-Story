@@ -1,6 +1,6 @@
 <div class="mt-map-container">
-    <mt-map [startCoordinates]="slcLatLng" [startZoom]="14"></mt-map>
+    <mt-map [startCoordinates]="chapters[0].mapLocation" [startZoom]="chapters[0].mapZoom"></mt-map>
 </div>
 <div class="mt-navigation-container">
-    <mt-navigation></mt-navigation>
+    <mt-navigation [chapters]="chapters" (chapterIndexChange)="chapterIndexChange($event)"></mt-navigation>
 </div>

@@ -1,5 +1,5 @@
 <div class="mt-navigation">
-    <div class="mt-navigation-arrow mt-navigation-arrow-left" (click)="onLeftArrowClicked()" [class.disabled]="currentPos == 0 || animating">
+    <div class="mt-navigation-arrow mt-navigation-arrow-left" (click)="onLeftArrowClicked()" [class.disabled]="currentChapter == 0 || animating">
         <i class="fas fa-angle-left"></i>
     </div>
     <div class="mt-navigation-rails"></div>
@@ -9,7 +9,7 @@
     </div>
     <div class="mt-navigation-label mt-navigation-label-previous" #previousLabel></div>
     <div class="mt-navigation-label mt-navigation-label-current" #currentLabel></div>
-    <div class="mt-navigation-arrow mt-navigation-arrow-right" (click)="onRightArrowClicked()" [class.disabled]="currentPos == testStrings.length - 1 || animating">
+    <div class="mt-navigation-arrow mt-navigation-arrow-right" (click)="onRightArrowClicked()" [class.disabled]="currentChapter >= chapters.length - 1 || animating">
         <i class="fas fa-angle-right"></i>
     </div>
 </div>

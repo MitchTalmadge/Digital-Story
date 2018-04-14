@@ -74,13 +74,12 @@
 
 .mt-navigation-train {
     z-index: 2;
+    pointer-events: none;
 }
 
 .mt-navigation-train > img {
     width: 160px;
     margin-bottom: 120px;
-
-    pointer-events: none;
 }
 
 .mt-navigation-label {

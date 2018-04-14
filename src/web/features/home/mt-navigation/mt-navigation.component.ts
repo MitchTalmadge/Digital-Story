@@ -1,5 +1,6 @@
-import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {animate, AnimationBuilder, AnimationFactory, style} from "@angular/animations";
+import {AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {animate, AnimationBuilder, style} from "@angular/animations";
+import {MTChapter} from "../../../model/mt-chapter.model";
 
 @Component({
     selector: 'mt-navigation',
@@ -10,13 +11,23 @@ import {animate, AnimationBuilder, AnimationFactory, style} from "@angular/anima
 export class MTNavigationComponent implements OnInit, AfterViewInit {
 
     /**
-     * The current position in the carousel.
+     * The index of the current chapter on the carousel.
      */
-    currentPos: number = 0;
+    currentChapter: number = 0;
 
+    /**
+     * Whether or not animation is currently in progress.
+     */
     animating: boolean = false;
 
-    testStrings: string[] = ["one", "two", "three", "four"];
+    /**
+     * The chapters of the story.
+     */
+    @Input()
+    chapters: MTChapter[] = [];
+
+    @Output()
+    chapterIndexChange: EventEmitter<number> = new EventEmitter<number>();
 
     @ViewChild("previousLabel")
     previousLabel: ElementRef;
@@ -31,22 +42,23 @@ export class MTNavigationComponent implements OnInit, AfterViewInit {
     }
 
     ngAfterViewInit(): void {
-        (<HTMLDivElement>this.currentLabel.nativeElement).innerHTML = this.testStrings[0];
+        (<HTMLDivElement>this.currentLabel.nativeElement).innerHTML = this.chapters.length > 0 ? this.chapters[0].label : "";
     }
 
     onLeftArrowClicked(): void {
-        if(this.animating)
+        if (this.animating)
             return;
 
-        if (this.currentPos > 0) {
-            this.currentPos--;
+        if (this.currentChapter > 0) {
+            this.currentChapter--;
+            this.chapterIndexChange.emit(this.currentChapter);
 
             // Init previous label
-            (<HTMLDivElement>this.previousLabel.nativeElement).innerHTML = this.testStrings[this.currentPos];
+            (<HTMLDivElement>this.previousLabel.nativeElement).innerHTML = this.chapters[this.currentChapter].label;
             (<HTMLDivElement>this.previousLabel.nativeElement).style.transform = "translateX(-100%)";
 
             // Init current label
-            (<HTMLDivElement>this.currentLabel.nativeElement).innerHTML = this.testStrings[this.currentPos + 1];
+            (<HTMLDivElement>this.currentLabel.nativeElement).innerHTML = this.chapters[this.currentChapter + 1].label;
             (<HTMLDivElement>this.currentLabel.nativeElement).style.transform = null;
 
             // Animations
@@ -70,7 +82,7 @@ export class MTNavigationComponent implements OnInit, AfterViewInit {
 
             let currentAnimation = currentAnimationFactory.create(this.currentLabel.nativeElement);
             currentAnimation.onDone(() => {
-                (<HTMLDivElement>this.currentLabel.nativeElement).innerHTML = this.testStrings[this.currentPos];
+                (<HTMLDivElement>this.currentLabel.nativeElement).innerHTML = this.chapters[this.currentChapter].label;
                 (<HTMLDivElement>this.currentLabel.nativeElement).style.transform = null;
                 currentAnimation.destroy();
                 this.animating = false;
@@ -80,18 +92,19 @@ export class MTNavigationComponent implements OnInit, AfterViewInit {
     }
 
     onRightArrowClicked(): void {
-        if(this.animating)
+        if (this.animating)
             return;
 
-        if (this.currentPos < this.testStrings.length - 1) {
-            this.currentPos++;
+        if (this.currentChapter < this.chapters.length - 1) {
+            this.currentChapter++;
+            this.chapterIndexChange.emit(this.currentChapter);
 
             // Init previous label
-            (<HTMLDivElement>this.previousLabel.nativeElement).innerHTML = this.testStrings[this.currentPos - 1];
+            (<HTMLDivElement>this.previousLabel.nativeElement).innerHTML = this.chapters[this.currentChapter - 1].label;
             (<HTMLDivElement>this.previousLabel.nativeElement).style.transform = null;
 
             // Init current label
-            (<HTMLDivElement>this.currentLabel.nativeElement).innerHTML = this.testStrings[this.currentPos];
+            (<HTMLDivElement>this.currentLabel.nativeElement).innerHTML = this.chapters[this.currentChapter].label;
             (<HTMLDivElement>this.currentLabel.nativeElement).style.transform = "translateX(100%)";
 
             // Animations
@@ -115,7 +128,7 @@ export class MTNavigationComponent implements OnInit, AfterViewInit {
 
             let currentAnimation = currentAnimationFactory.create(this.currentLabel.nativeElement);
             currentAnimation.onDone(() => {
-                (<HTMLDivElement>this.previousLabel.nativeElement).innerHTML = this.testStrings[this.currentPos];
+                (<HTMLDivElement>this.previousLabel.nativeElement).innerHTML = this.chapters[this.currentChapter].label;
                 (<HTMLDivElement>this.currentLabel.nativeElement).style.transform = null;
                 currentAnimation.destroy();
                 this.animating = false;
