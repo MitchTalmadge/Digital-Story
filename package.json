@@ -64,7 +64,7 @@
     "null-loader": "^0.1.1",
     "raw-loader": "^0.5.1",
     "reflect-metadata": "^0.1.10",
-    "sass-loader": "^6.0.6",
+    "sass-loader": "^7.0.1",
     "style-loader": "^0.20.3",
     "to-string-loader": "^1.1.5",
     "typescript": "^2.8.1",
