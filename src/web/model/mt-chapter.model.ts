@@ -1,6 +1,8 @@
 /**
  * Represents a "chapter" of the digital story.
  */
+import {MTMarker} from "./mt-marker.model";
+
 export interface MTChapter {
 
     /**
@@ -17,5 +19,10 @@ export interface MTChapter {
      * The zoom level of the map.
      */
     mapZoom: number;
+
+    /**
+     * The markers associated with the chapter.
+     */
+    markers: MTMarker[];
 
 }

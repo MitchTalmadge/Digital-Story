@@ -43,6 +43,7 @@ export class MTNavigationComponent implements OnInit, AfterViewInit {
 
     ngAfterViewInit(): void {
         (<HTMLDivElement>this.currentLabel.nativeElement).innerHTML = this.chapters.length > 0 ? this.chapters[0].label : "";
+        this.chapterIndexChange.emit(0);
     }
 
     onLeftArrowClicked(): void {
