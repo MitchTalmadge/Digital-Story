@@ -34,10 +34,21 @@ export class MTHomeComponent implements OnInit {
             ]
         },
         {
-            label: "Trolley Square",
+            label: "Electrified Streetcars",
             mapLocation: new LatLng(40.7608, -111.8910),
             mapZoom: 14,
             markers: []
+        },
+        {
+            label: "The Rio Grande Railroad",
+            mapLocation: new LatLng(40.6963205,-111.9128377),
+            mapZoom: 12,
+            markers: [
+                {
+                    mapLocation: new google.maps.LatLng(40.626846, -111.904294),
+                    infoWindowContents: require("!html-loader!./chapters/3-rio-grande/1/marker.html")
+                }
+            ]
         },
         {
             label: "The Great Saltair",

@@ -34,9 +34,9 @@ export class MTMapComponent implements OnInit, AfterViewInit {
     private markers: google.maps.Marker[] = [];
 
     /**
-     * A set of currently-open info windows.
+     * The currently open info-window, if any.
      */
-    private openInfoWindows: Set<google.maps.InfoWindow> = new Set<google.maps.InfoWindow>();
+    private openInfoWindow: google.maps.InfoWindow;
 
     constructor() {
     }
@@ -55,6 +55,7 @@ export class MTMapComponent implements OnInit, AfterViewInit {
     private initGoogleMaps(): void {
         this.map = new google.maps.Map(this.mapDiv.nativeElement, {
             center: new google.maps.LatLng(0, 0),
+            clickableIcons: false,
             draggable: false,
             draggableCursor: 'default',
             fullscreenControl: false,
@@ -76,7 +77,7 @@ export class MTMapComponent implements OnInit, AfterViewInit {
         this.originalMapLocation = location;
         this.map.setZoom(zoom);
 
-        this.openInfoWindows.clear();
+        this.openInfoWindow = null;
     }
 
     /**
@@ -110,14 +111,16 @@ export class MTMapComponent implements OnInit, AfterViewInit {
             // Add click listener to open info window.
             mapMarker.addListener("click", args => {
                 infoWindow.open(this.map, mapMarker);
-                this.openInfoWindows.add(infoWindow);
+                if (this.openInfoWindow != null) {
+                    this.openInfoWindow.close();
+                }
+
+                this.openInfoWindow = infoWindow;
             });
 
             // Add close listener to pan map back to original location when info window is closed.
             infoWindow.addListener("closeclick", args => {
-                this.openInfoWindows.delete(infoWindow);
-                if (this.openInfoWindows.size == 0)
-                    this.panTo(this.originalMapLocation, this.map.getZoom());
+                this.panTo(this.originalMapLocation, this.map.getZoom());
             });
 
             // Add map marker into array so it can be removed later.
