@@ -70,6 +70,14 @@ export class MTMapComponent implements OnInit, AfterViewInit {
             zoomControl: false,
             zoom: 1
         });
+
+        this.map.addListener("click", args => {
+            if (this.openInfoWindow != null) {
+                this.openInfoWindow.close();
+                this.openInfoWindow = null;
+                this.panTo(this.originalMapLocation, this.originalMapZoom);
+            }
+        });
     }
 
     /**
@@ -119,7 +127,7 @@ export class MTMapComponent implements OnInit, AfterViewInit {
             mapMarker.addListener("click", args => {
                 if (this.openInfoWindow != null) {
 
-                    if(this.openInfoWindow == infoWindow) {
+                    if (this.openInfoWindow == infoWindow) {
                         this.openInfoWindow.close();
                         this.panTo(this.originalMapLocation, this.originalMapZoom);
                         return;

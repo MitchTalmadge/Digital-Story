@@ -50,8 +50,12 @@ export class MTHomeComponent implements OnInit {
             mapZoom: 12,
             markers: [
                 {
-                    mapLocation: new google.maps.LatLng(40.626846, -111.904294),
+                    mapLocation: new google.maps.LatLng(40.762824, -111.904612),
                     infoWindowContents: require("!html-loader!./chapters/rio-grande/1/marker.html")
+                },
+                {
+                    mapLocation: new google.maps.LatLng(40.626846, -111.904294),
+                    infoWindowContents: require("!html-loader!./chapters/rio-grande/2/marker.html")
                 }
             ]
         },
