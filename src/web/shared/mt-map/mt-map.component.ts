@@ -29,6 +29,11 @@ export class MTMapComponent implements OnInit, AfterViewInit {
     private originalMapLocation: google.maps.LatLng;
 
     /**
+     * The last-panned-to map zoom level, in case the map is shifted by an info window.
+     */
+    private originalMapZoom: number;
+
+    /**
      * All markers currently displayed on the map.
      */
     private markers: google.maps.Marker[] = [];
@@ -75,7 +80,9 @@ export class MTMapComponent implements OnInit, AfterViewInit {
     panTo(location: google.maps.LatLng, zoom: number) {
         this.map.panTo(location);
         this.originalMapLocation = location;
+
         this.map.setZoom(zoom);
+        this.originalMapZoom = zoom;
 
         this.openInfoWindow = null;
     }
@@ -110,17 +117,23 @@ export class MTMapComponent implements OnInit, AfterViewInit {
 
             // Add click listener to open info window.
             mapMarker.addListener("click", args => {
-                infoWindow.open(this.map, mapMarker);
                 if (this.openInfoWindow != null) {
+
+                    if(this.openInfoWindow == infoWindow) {
+                        this.openInfoWindow.close();
+                        this.panTo(this.originalMapLocation, this.originalMapZoom);
+                        return;
+                    }
+
                     this.openInfoWindow.close();
                 }
-
+                infoWindow.open(this.map, mapMarker);
                 this.openInfoWindow = infoWindow;
             });
 
             // Add close listener to pan map back to original location when info window is closed.
             infoWindow.addListener("closeclick", args => {
-                this.panTo(this.originalMapLocation, this.map.getZoom());
+                this.panTo(this.originalMapLocation, this.originalMapZoom);
             });
 
             // Add map marker into array so it can be removed later.
