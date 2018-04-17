@@ -13,12 +13,17 @@ export interface MTChapter {
     /**
      * The location to pan to on the map.
      */
-    mapLocation: google.maps.LatLng;
+    mapLocation?: google.maps.LatLng;
 
     /**
      * The zoom level of the map.
      */
-    mapZoom: number;
+    mapZoom?: number;
+
+    /**
+     * The bounds to pan to.
+     */
+    mapLocationBounds?: google.maps.LatLngBounds;
 
     /**
      * The markers associated with the chapter.
