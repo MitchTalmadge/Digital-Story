@@ -1,8 +1,7 @@
 import {Component, OnInit, ViewChild} from "@angular/core";
+import LatLng = google.maps.LatLng;
 import {MTChapter} from "../../model/mt-chapter.model";
 import {MTMapComponent} from "../../shared/mt-map/mt-map.component";
-import LatLngBounds = google.maps.LatLngBounds;
-import LatLng = google.maps.LatLng;
 
 @Component({
     selector: 'mt-home',
@@ -21,154 +20,171 @@ export class MTHomeComponent implements OnInit {
             mapZoom: 18,
             markers: [
                 {
-                    mapLocation: new LatLng(40.767097, -111.891184),
+                    mapLocation: new google.maps.LatLng(40.767097, -111.891184),
                     infoWindowContents: require("!html-loader!./chapters/mules/1/marker.html")
                 },
                 {
-                    mapLocation: new LatLng(40.767195, -111.891133),
+                    mapLocation: new google.maps.LatLng(40.767195, -111.891133),
                     infoWindowContents: require("!html-loader!./chapters/mules/2/marker.html")
                 },
                 {
-                    mapLocation: new LatLng(40.767367, -111.888322),
+                    mapLocation: new google.maps.LatLng(40.767367, -111.888322),
                     infoWindowContents: require("!html-loader!./chapters/mules/3/marker.html")
                 }
             ]
         },
         {
             label: "Electrified Streetcars",
-            mapLocation: new LatLng(40.7608, -111.8910),
-            mapZoom: 15,
+            mapLocation: new LatLng(40.7658, -111.8930),
+            mapZoom: 16,
             markers: [
                 {
-                    mapLocation: new LatLng(40.761837, -111.891105),
+                    mapLocation: new google.maps.LatLng(40.761837, -111.891105),
                     infoWindowContents: require("!html-loader!./chapters/electric/1/marker.html")
+                },
+                {
+                    mapLocation: new google.maps.LatLng(40.765028, -111.891079),
+                    infoWindowContents: require("!html-loader!./chapters/electric/2/marker.html")
+                },
+                {
+                    mapLocation: new google.maps.LatLng(40.769350, -111.891129),
+                    infoWindowContents: require("!html-loader!./chapters/electric/3/marker.html")
+                },
+                {
+                    mapLocation: new google.maps.LatLng(40.769344, -111.893975),
+                    infoWindowContents: require("!html-loader!./chapters/electric/4/marker.html")
+                },
+                {
+                    mapLocation: new google.maps.LatLng(40.764179, -111.896790),
+                    infoWindowContents: require("!html-loader!./chapters/electric/5/marker.html")
                 }
             ]
         },
         {
             label: "The Rio Grande Railroad",
-            mapLocation: new LatLng(40.6963205, -111.9128377),
+            mapLocation: new LatLng(40.6963205,-111.9128377),
             mapZoom: 12,
             markers: [
                 {
-                    mapLocation: new LatLng(40.762824, -111.904612),
+                    mapLocation: new google.maps.LatLng(40.762824, -111.904612),
                     infoWindowContents: require("!html-loader!./chapters/rio-grande/1/marker.html")
                 },
                 {
-                    mapLocation: new LatLng(40.626846, -111.904294),
+                    mapLocation: new google.maps.LatLng(40.626846, -111.904294),
                     infoWindowContents: require("!html-loader!./chapters/rio-grande/2/marker.html")
                 }
             ]
         },
         {
             label: "The Great Salt Lake",
-            mapLocationBounds: new LatLngBounds(new LatLng(40.675412, -112.892123), new LatLng(41.238301, -112.101058)),
+            mapLocation: new LatLng(40.9742599,-112.4517861),
+            mapZoom: 10,
             markers: [
                 {
-                    mapLocation: new LatLng(40.771676, -112.052835),
+                    mapLocation: new google.maps.LatLng(40.771676, -112.052835),
                     infoWindowContents: require("!html-loader!./chapters/saltair/1/marker.html")
                 },
                 {
-                    mapLocation: new LatLng(40.773200, -112.170894),
+                    mapLocation: new google.maps.LatLng(40.773200, -112.170894),
                     infoWindowContents: require("!html-loader!./chapters/saltair/2/marker.html")
                 },
                 {
-                    mapLocation: new LatLng(40.783381, -112.185353),
+                    mapLocation: new google.maps.LatLng(41.2222843,-112.8578748),
                     infoWindowContents: require("!html-loader!./chapters/saltair/3/marker.html")
                 },
                 {
-                    mapLocation: new LatLng(40.780421, -112.178870),
+                    mapLocation: new google.maps.LatLng(40.759465, -111.958767),
                     infoWindowContents: require("!html-loader!./chapters/saltair/4/marker.html")
                 },
                 {
-                    mapLocation: new LatLng(40.767422, -112.157809),
+                    mapLocation: new google.maps.LatLng(40.767422, -112.157809),
                     infoWindowContents: require("!html-loader!./chapters/saltair/5/marker.html")
                 }
             ]
         },
         {
             label: "TRAX",
-            mapLocation: new LatLng(40.6615365, -111.9622589),
+            mapLocation: new LatLng(40.6615365,-111.9622589),
             mapZoom: 11.75,
             markers: [
                 {
-                    mapLocation: new LatLng(40.544125, -112.014149),
+                    mapLocation: new google.maps.LatLng(40.544125, -112.014149),
                     infoWindowContents: require("!html-loader!./chapters/trax/1/marker.html")
                 },
                 {
-                    mapLocation: new LatLng(40.558707, -112.024697),
+                    mapLocation: new google.maps.LatLng(40.558707, -112.024697),
                     infoWindowContents: require("!html-loader!./chapters/trax/2/marker.html")
                 },
                 {
-                    mapLocation: new LatLng(40.569112, -112.024826),
+                    mapLocation: new google.maps.LatLng(40.569112, -112.024826),
                     infoWindowContents: require("!html-loader!./chapters/trax/3/marker.html")
                 },
                 {
-                    mapLocation: new LatLng(40.581523, -112.004029),
+                    mapLocation: new google.maps.LatLng(40.581523, -112.004029),
                     infoWindowContents: require("!html-loader!./chapters/trax/4/marker.html")
                 },
                 {
-                    mapLocation: new LatLng(40.594754, -111.971800),
+                    mapLocation: new google.maps.LatLng(40.594754, -111.971800),
                     infoWindowContents: require("!html-loader!./chapters/trax/5/marker.html")
                 },
                 {
-                    mapLocation: new LatLng(40.599022, -111.956930),
+                    mapLocation: new google.maps.LatLng(40.599022, -111.956930),
                     infoWindowContents: require("!html-loader!./chapters/trax/6/marker.html")
                 },
                 {
-                    mapLocation: new LatLng(40.604928, -111.936496),
+                    mapLocation: new google.maps.LatLng(40.604928, -111.936496),
                     infoWindowContents: require("!html-loader!./chapters/trax/7/marker.html")
                 },
                 {
-                    mapLocation: new LatLng(40.608041, -111.924272),
+                    mapLocation: new google.maps.LatLng(40.608041, -111.924272),
                     infoWindowContents: require("!html-loader!./chapters/trax/8/marker.html")
                 },
                 {
-                    mapLocation: new LatLng(40.617066, -111.915259),
+                    mapLocation: new google.maps.LatLng(40.617066, -111.915259),
                     infoWindowContents: require("!html-loader!./chapters/trax/9/marker.html")
                 },
                 {
-                    mapLocation: new LatLng(40.633612, -111.898355),
+                    mapLocation: new google.maps.LatLng(40.633612, -111.898355),
                     infoWindowContents: require("!html-loader!./chapters/trax/10/marker.html")
                 },
                 {
-                    mapLocation: new LatLng(40.659921, -111.895501),
+                    mapLocation: new google.maps.LatLng(40.659921, -111.895501),
                     infoWindowContents: require("!html-loader!./chapters/trax/11/marker.html")
                 },
                 {
-                    mapLocation: new LatLng(40.676710, -111.894030),
+                    mapLocation: new google.maps.LatLng(40.676710, -111.894030),
                     infoWindowContents: require("!html-loader!./chapters/trax/12/marker.html")
                 },
                 {
-                    mapLocation: new LatLng(40.687610, -111.896616),
+                    mapLocation: new google.maps.LatLng(40.687610, -111.896616),
                     infoWindowContents: require("!html-loader!./chapters/trax/13/marker.html")
                 },
                 {
-                    mapLocation: new LatLng(40.700531, -111.896907),
+                    mapLocation: new google.maps.LatLng(40.700531, -111.896907),
                     infoWindowContents: require("!html-loader!./chapters/trax/14/marker.html")
                 },
                 {
-                    mapLocation: new LatLng(40.724443, -111.896877),
+                    mapLocation: new google.maps.LatLng(40.724443, -111.896877),
                     infoWindowContents: require("!html-loader!./chapters/trax/15/marker.html")
                 },
                 {
-                    mapLocation: new LatLng(40.742180, -111.896806),
+                    mapLocation: new google.maps.LatLng(40.742180, -111.896806),
                     infoWindowContents: require("!html-loader!./chapters/trax/16/marker.html")
                 },
                 {
-                    mapLocation: new LatLng(40.750459, -111.896843),
+                    mapLocation: new google.maps.LatLng(40.750459, -111.896843),
                     infoWindowContents: require("!html-loader!./chapters/trax/17/marker.html")
                 },
                 {
-                    mapLocation: new LatLng(40.759178, -111.891037),
+                    mapLocation: new google.maps.LatLng(40.759178, -111.891037),
                     infoWindowContents: require("!html-loader!./chapters/trax/18/marker.html")
                 },
                 {
-                    mapLocation: new LatLng(40.763450, -111.891089),
+                    mapLocation: new google.maps.LatLng(40.763450, -111.891089),
                     infoWindowContents: require("!html-loader!./chapters/trax/19/marker.html")
                 },
                 {
-                    mapLocation: new LatLng(40.767841, -111.891035),
+                    mapLocation: new google.maps.LatLng(40.767841, -111.891035),
                     infoWindowContents: require("!html-loader!./chapters/trax/20/marker.html")
                 }
             ]
@@ -186,12 +202,8 @@ export class MTHomeComponent implements OnInit {
      * @param {number} index The new chapter index.
      */
     chapterIndexChange(index: number) {
-        if (this.chapters[index].mapLocationBounds) {
-            this.map.panToBounds(this.chapters[index].mapLocationBounds)
-        } else {
-            this.map.panTo(this.chapters[index].mapLocation, this.chapters[index].mapZoom);
-        }
-
+        console.log("Chapter: " + this.chapters[index].label);
+        this.map.panTo(this.chapters[index].mapLocation, this.chapters[index].mapZoom);
         this.map.setMarkers(this.chapters[index].markers);
     }
 

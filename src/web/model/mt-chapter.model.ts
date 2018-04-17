@@ -21,11 +21,6 @@ export interface MTChapter {
     mapZoom?: number;
 
     /**
-     * The bounds to pan to.
-     */
-    mapLocationBounds?: google.maps.LatLngBounds;
-
-    /**
      * The markers associated with the chapter.
      */
     markers: MTMarker[];

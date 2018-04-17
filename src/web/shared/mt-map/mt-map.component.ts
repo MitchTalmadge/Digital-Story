@@ -25,7 +25,15 @@ export class MTMapComponent implements OnInit, AfterViewInit {
      */
     private map: google.maps.Map;
 
-    private originalMapBounds: LatLngBounds;
+    /**
+     * The last-panned-to map location, in case the map is shifted by an info window.
+     */
+    private originalMapLocation: google.maps.LatLng;
+
+    /**
+     * The last-panned-to map zoom level, in case the map is shifted by an info window.
+     */
+    private originalMapZoom: number;
 
     /**
      * All markers currently displayed on the map.
@@ -69,7 +77,7 @@ export class MTMapComponent implements OnInit, AfterViewInit {
             if (this.openInfoWindow != null) {
                 this.openInfoWindow.close();
                 this.openInfoWindow = null;
-                this.panToBounds(this.originalMapBounds);
+                this.panTo(this.originalMapLocation, this.originalMapZoom);
             }
         });
     }
@@ -81,32 +89,12 @@ export class MTMapComponent implements OnInit, AfterViewInit {
      */
     panTo(location: LatLng, zoom: number) {
         this.map.panTo(location);
-        this.map.setZoom(zoom);
+        this.originalMapLocation = location;
 
-        let listener = this.map.addListener("bounds_changed", args => {
-            this.originalMapBounds = this.map.getBounds();
-            listener.remove();
-        });
+        this.map.setZoom(zoom);
+        this.originalMapZoom = zoom;
 
         this.openInfoWindow = null;
-    }
-
-    /**
-     * Pans the map to the given bounds.
-     * @param {google.maps.LatLngBounds} location The bounds to fit the map to.
-     */
-    panToBounds(location: LatLngBounds) {
-        console.log("Panning to: " + location);
-        this.map.panToBounds(location);
-        let listener = this.map.addListener("bounds_changed", args => {
-            listener.remove();
-            console.log("Panned to: " + this.originalMapBounds);
-
-            if (!this.map.getBounds().contains(location.getSouthWest()) || !this.map.getBounds().contains(location.getNorthEast()))
-                this.panToBounds(location);
-            else
-                this.originalMapBounds = this.map.getBounds();
-        });
     }
 
     /**
@@ -143,7 +131,7 @@ export class MTMapComponent implements OnInit, AfterViewInit {
 
                     if (this.openInfoWindow == infoWindow) {
                         this.openInfoWindow.close();
-                        this.panToBounds(this.originalMapBounds);
+                        this.panTo(this.originalMapLocation, this.originalMapZoom);
                         return;
                     }
 
@@ -155,7 +143,7 @@ export class MTMapComponent implements OnInit, AfterViewInit {
 
             // Add close listener to pan map back to original location when info window is closed.
             infoWindow.addListener("closeclick", args => {
-                this.panToBounds(this.originalMapBounds);
+                this.panTo(this.originalMapLocation, this.originalMapZoom);
             });
 
             // Add map marker into array so it can be removed later.
