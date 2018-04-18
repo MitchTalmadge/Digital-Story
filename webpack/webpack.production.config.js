@@ -38,4 +38,6 @@ config.plugins.push(
     })
 );
 
+config.output.publicPath = "/wrtg/digital_story/";
+
 module.exports = config;
